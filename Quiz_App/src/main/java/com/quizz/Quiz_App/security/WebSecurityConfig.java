@@ -65,16 +65,6 @@ public class WebSecurityConfig {
 		http.authenticationProvider(daoAuthenticationProvider());
 		return http.build();
 
-		
-		 http.csrf().disable() .authorizeHttpRequests(authorize)
-		 .antMatchers("/admin/**").hasRole("ADMIN").antMathers("/user/**").hasRole(
-		 "USER")
-		 .antmatchers("/admin/**").hasRole("ADMIN").antMatchers("/user/**").hasRole(
-		 "USER") .antMatchers("/login","/").permitAll().and().formLogin().defaultSuccessUrl("/home", true).and()
-		 .logout().permitAll(); 
-		 return http.build();
-		 
-
 	}
 
 
