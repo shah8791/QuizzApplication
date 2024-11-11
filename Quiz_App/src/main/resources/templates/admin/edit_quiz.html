@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Quiz</title>
+</head>
+<body>
+    <h2>Edit Quiz</h2>
+    <form th:action="@{'/admin/quizzes/update/' + ${quiz.id}}" th:object="${quiz}" method="post">
+        <div>
+            <label>Title:</label>
+            <input type="text" th:field="*{title}" required/>
+        </div>
+        <div>
+            <label>Description:</label>
+            <textarea th:field="*{description}" required></textarea>
+        </div>
+        <!-- Similar to create_quiz.html, handle questions and options here -->
+        <div>
+            <button type="submit">Update Quiz</button>
+        </div>
+    </form>
+    <a href="/admin/quizzes">Back to Quizzes</a>
+</body>
+</html>

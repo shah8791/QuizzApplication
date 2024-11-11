@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Your Scores</title>
+</head>
+<body>
+    <h2>Your Scores</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Quiz ID</th>
+                <th>Quiz Title</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="score : ${scores}">
+                <td th:text="${score.quizId}">1</td>
+                <td th:text="${#strings.capitalize(score.quizId.toString())}">Quiz Title</td>
+                <td th:text="${score.score}">0</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/user/quizzes">Back to Quizzes</a><br/>
+    <a href="/">Home</a>
+</body>
+</html>
+v

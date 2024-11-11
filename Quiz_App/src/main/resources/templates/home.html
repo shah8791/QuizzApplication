@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quiz Application Home</title>
+</head>
+<body>
+    <h1>Welcome to the Quiz Application</h1>
+    <div th:if="${#authorization.expression('isAuthenticated()')}">
+        <p>Hello, <span th:text="${#authentication.name}">User</span>!</p>
+        <a th:if="${#authorization.expression('hasRole(''ADMIN'')')}" href="/admin/quizzes">Admin Panel</a><br/>
+        <a th:if="${#authorization.expression('hasRole(''USER'')')}" href="/user/quizzes">Take a Quiz</a><br/>
+        <a th:if="${#authorization.expression('hasRole(''USER'')')}" href="/user/scores">View Scores</a><br/>
+        <a href="/logout">Logout</a>
+    </div>
+    <div th:unless="${#authorization.expression('isAuthenticated()')}">
+        <a href="/login">Login</a>
+    </div>
+</body>
+</html>

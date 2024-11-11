@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Quiz</title>
+</head>
+<body>
+    <h2>Create New Quiz</h2>
+    <form th:action="@{/admin/quizzes}" th:object="${quiz}" method="post">
+        <div>
+            <label>Title:</label>
+            <input type="text" th:field="*{title}" required/>
+        </div>
+        <div>
+            <label>Description:</label>
+            <textarea th:field="*{description}" required></textarea>
+        </div>
+        <div>
+            <h3>Questions</h3>
+            <div th:each="question, iterStat : *{questions}">
+                <h4>Question <span th:text="${iterStat.index + 1}">1</span></h4>
+                <div>
+                    <label>Question Text:</label>
+                    <input type="text" th:field="*{questions[__${iterStat.index}__].questionText}" required/>
+                </div>
+                <div>
+                    <label>Correct Answer:</label>
+                    <input type="text" th:field="*{questions[__${iterStat.index}__].correctAnswer}" required/>
+                </div>
+                <div>
+                    <label>Options (comma separated):</label>
+                    <input type="text" name="options" placeholder="Option1, Option2, Option3, Option4" required/>
+                </div>
+            </div>
+            <!-- You can add JavaScript here to dynamically add more questions -->
+        </div>
+        <div>
+            <button type="submit">Create Quiz</button>
+        </div>
+    </form>
+    <a href="/admin/quizzes">Back to Quizzes</a>
+</body>
+</html>
